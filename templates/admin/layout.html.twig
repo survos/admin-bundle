@@ -1,0 +1,25 @@
+{% extends '@SurvosTabler/layout/base.html.twig' %}
+
+{% block title %}{{ title|default('Admin') }}{% endblock %}
+
+{% block content %}
+    <div class="page-header d-print-none mb-3">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <div class="page-pretitle">Survos Admin</div>
+                    <h1 class="page-title">{{ title|default('Admin') }}</h1>
+                </div>
+                <div class="col-auto ms-auto d-print-none">
+                    {% block admin_actions %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="container-xl">
+            {% block admin_body %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{
+    "name": "survos/admin-bundle",
+    "description": "Registry-driven Survos admin/workbench shell built on Tabler",
+    "keywords": ["symfony", "admin", "tabler", "survos"],
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "require": {
+        "php": "^8.4",
+        "survos/kit-bundle": "^2.5",
+        "survos/tabler-bundle": "^2.5",
+        "symfony/config": "^8.1",
+        "symfony/dependency-injection": "^8.1",
+        "symfony/http-foundation": "^8.1",
+        "symfony/http-kernel": "^8.1",
+        "symfony/routing": "^8.1",
+        "symfony/twig-bundle": "^8.1",
+        "twig/twig": "^3.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "Survos\\AdminBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        },
+        "symfony": {
+            "allow-contrib": true
+        }
+    }
+}

@@ -1,0 +1,85 @@
+{% extends '@SurvosAdmin/admin/layout.html.twig' %}
+
+{% block admin_body %}
+    {% if groups is empty %}
+        <div class="empty">
+            <div class="empty-icon">
+                {{ ux_icon('tabler:layout-dashboard', {height: '48px', width: '48px'}) }}
+            </div>
+            <p class="empty-title">No admin sections registered</p>
+            <p class="empty-subtitle text-secondary">
+                Install Survos ecosystem bundles that provide admin contributors.
+            </p>
+        </div>
+    {% else %}
+        <div class="row row-cards">
+            {% for group, sections in groups %}
+                <div class="col-12">
+                    <h2 class="h3 mb-2">{{ group }}</h2>
+                </div>
+
+                {% for section in sections %}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    {% if section.icon %}
+                                        <span class="text-secondary">{{ ux_icon(section.icon, {height: '20px', width: '20px'}) }}</span>
+                                    {% endif %}
+                                    <h3 class="card-title mb-0">{{ section.label }}</h3>
+                                </div>
+
+                                {% if section.description %}
+                                    <p class="text-secondary mb-3">{{ section.description }}</p>
+                                {% endif %}
+
+                                {% if section.cards %}
+                                    <div class="row g-2 mb-3">
+                                        {% for card in section.cards %}
+                                            <div class="col-6">
+                                                <div class="border rounded-2 p-2 h-100">
+                                                    <div class="text-secondary small">{{ card.label }}</div>
+                                                    <div class="h3 mb-0">{{ card.value ?? '-' }}</div>
+                                                    {% if card.description %}
+                                                        <div class="text-secondary small">{{ card.description }}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                {% if section.links %}
+                                    <div class="list-group list-group-flush list-group-hoverable">
+                                        {% for link in section.links %}
+                                            {% set href = link.route ? path(link.route, link.routeParameters) : link.url %}
+                                            {% if href %}
+                                                <a class="list-group-item px-0" href="{{ href }}"{% if link.target %} target="{{ link.target }}"{% endif %}>
+                                                    <div class="row align-items-center">
+                                                        <div class="col-auto">
+                                                            {% if link.icon %}
+                                                                {{ ux_icon(link.icon, {height: '18px', width: '18px'}) }}
+                                                            {% else %}
+                                                                {{ ux_icon('tabler:arrow-right', {height: '18px', width: '18px'}) }}
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col text-truncate">
+                                                            <div>{{ link.label }}</div>
+                                                            {% if link.description %}
+                                                                <div class="text-secondary small text-truncate">{{ link.description }}</div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
