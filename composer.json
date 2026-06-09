@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "survos/kit-bundle": "^2.5",
         "survos/tabler-bundle": "^2.5",
         "symfony/config": "^8.1",
