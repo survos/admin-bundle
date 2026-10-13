@@ -48,7 +48,7 @@ final class SurvosAdminBundle extends AbstractSurvosBundle
             ->autowire()
             ->autoconfigure();
 
-        $services->load('Survos\\AdminBundle\\Service\\', __DIR__ . '/Service/');
+        $services->load('Survos\\AdminBundle\\Service\\', __DIR__.'/Service/');
         $services->set(AdminRegistry::class)
             ->arg('$contributors', new TaggedIteratorArgument(AdminContributorInterface::TAG))
             ->arg('$title', $config['title']);
